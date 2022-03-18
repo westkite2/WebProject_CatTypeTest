@@ -37,6 +37,24 @@ function calResult(){
     let resultword = resultArray[0].key;
     return resultword;
 }
+
+function setResult(){
+    let point = calResult();
+    const resultName = document.querySelector('.resultname');
+    resultName.innerHTML = infoList[point].name;
+
+    var resultImg = document.createElement('img');
+    const imgDiv = document.querySelector("#resultImg");
+    var imgURL = 'img/cat-' + point + '.png';
+    resultImg.src = imgURL;
+    resultImg.alt = point;
+    resultImg.classList.add('img-fluid');
+    imgDiv.appendChild(resultImg);
+
+    const resultDesc = document.querySelector('.resultDesc');
+    resultDesc.innerHTML = infoList[point].desc;
+}
+
 function goResult(){
     qna.style.WebkitAnimation = "fadeOut 1s";
     qna.style.animation = "fadeOut 1s";
@@ -46,11 +64,8 @@ function goResult(){
         setTimeout(() => {
             qna.style.display = "none";
             result.style.display = "block";
-        }, 450);
-    }, 450)
-
-    console.log(select);
-    calResult();
+        }, 450)})
+        setResult();
 }
 
 function addAnswer(answerText, qIdx, idx){
@@ -64,7 +79,7 @@ function addAnswer(answerText, qIdx, idx){
     
     a.appendChild(answer);
     answer.innerHTML = answerText;
-
+    
     answer.addEventListener("click", function(){
         var children = document.querySelectorAll(".answerList");
         for(let i = 0; i < children.length; i++){
@@ -81,6 +96,7 @@ function addAnswer(answerText, qIdx, idx){
         }, 450)
     }, false);
 }
+
 function goNext(qIdx){
     if(qIdx == endPoint){
         goResult();
@@ -94,6 +110,7 @@ function goNext(qIdx){
     var status = document.querySelector('.statusBar');
     status.style.width = (100/endPoint) * (qIdx+1) + '%';
 }
+
 function begin(){
     main.style.WebkitAnimation = "fadeOut 1s";
     main.style.animation = "fadeOut 1s";

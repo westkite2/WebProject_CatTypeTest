@@ -1,4 +1,4 @@
-const qnaList = [
+  const qnaList = [
     {
       q: '1. 친구를 사귀었다!',
       a: [
